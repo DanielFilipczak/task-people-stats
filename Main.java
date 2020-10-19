@@ -1,6 +1,9 @@
 class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world");
+        PeopleStats peopleStats = new PeopleStats(Paths.get("śćieżka", "do", "pliku"));
+
+        System.out.println(String.format("Liczba osób: %d", peopleStats.count()));
+        System.out.println(String.format("Liczba osób z unikalnymi nazwiskami: %d", peopleStats.countUniqueLastNames()));
     }
 }
 
@@ -16,6 +19,12 @@ class PeopleStats {
         } catch (IOException e) {
             throw new IllegalStateException(e);
         }
+    }
+    public long countUniqueLastNames() {
+        return people.stream()
+                .map(Person::getLastName)
+                .distinct()
+                .count();
     }
 }
 
