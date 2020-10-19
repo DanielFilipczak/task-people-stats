@@ -26,6 +26,9 @@ class PeopleStats {
                 .distinct()
                 .count();
     }
+    public long count() {
+        return people.size();
+    }
 }
 
 class Person {
